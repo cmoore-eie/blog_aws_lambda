@@ -1,0 +1,83 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  AWS
+
+  Sample SAM Template for AWS
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+
+Resources:
+  gendercreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: gendercreate
+      CodeUri: src/functions
+      Handler: genderfunctions.gendercreate
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /gendercreate
+            Method: post
+
+  genderread:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: genderread
+      CodeUri: src/functions
+      Handler: genderfunctions.genderread
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderread
+            Method: get
+
+  genderupdate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: genderupdate
+      CodeUri: src/functions
+      Handler: genderfunctions.genderupdate
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderupdate
+            Method: put
+
+  genderdelete:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: genderdelete
+      CodeUri: src/functions
+      Handler: genderfunctions.genderdelete
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderdelete
+            Method: delete
+
+  genderlistall:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: genderlistall
+      CodeUri: src/functions
+      Handler: genderfunctions.genderlistall
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderlistall
+            Method: get
