@@ -7,20 +7,21 @@ dynamodb = boto3.resource('dynamodb', endpoint_url='http://host.docker.internal:
 table = dynamodb.Table('ReferenceData')
 
 
-class Gender:
+class Branch:
     def __init__(self, item):
         if item is not None:
             self.ItemUUID = item.get('ItemUUID')
             self.ItemType = item.get('ItemType')
             self.Code = item.get('Code')
             self.Name = item.get('Name')
+            self.BranchType = item.get('BranchType')
             self.EffectiveDate = item.get('EffectiveDate')
             self.ExpirationDate = item.get('ExpirationDate')
             if self.ItemType is None:
-                self.ItemType = 'GENDER'
+                self.ItemType = 'BRANCH'
             self.Key = {'ItemUUID': self.ItemUUID, 'ItemType': self.ItemType}
         else:
-            self.ItemType = 'GENDER'
+            self.ItemType = 'BRANCH'
 
     def create(self):
         if self.ItemUUID is None:
@@ -58,8 +59,8 @@ class Gender:
             KeyConditionExpression=Key('ItemType').eq(self.ItemType))
 
 
-def gendercreate(event, context):
-    dto = Gender(event['queryStringParameters'])
+def branchcreate(event, context):
+    dto = Branch(event['queryStringParameters'])
     ret_val = dto.create()
     response = {
         'statusCode': 200,
@@ -68,8 +69,8 @@ def gendercreate(event, context):
     return response
 
 
-def genderupdate(event, context):
-    dto = Gender(event['queryStringParameters'])
+def branchupdate(event, context):
+    dto = Branch(event['queryStringParameters'])
     ret_val = dto.update()
     response = {
         'statusCode': 200,
@@ -78,9 +79,9 @@ def genderupdate(event, context):
     return response
 
 
-def genderread(event, context):
+def branchread(event, context):
     item = event['queryStringParameters']
-    dto = Gender(item)
+    dto = Branch(item)
     ret_val = dto.read()
     response = {
         'statusCode': 200,
@@ -89,8 +90,8 @@ def genderread(event, context):
     return response
 
 
-def genderlistall(event, context):
-    dto = Gender(None)
+def branchlistall(event, context):
+    dto = Branch(None)
     ret_val = dto.getall()
     response = {
         'statusCode': 200,
@@ -99,8 +100,8 @@ def genderlistall(event, context):
     return response
 
 
-def genderdelete(event, context):
-    dto = Gender(event['queryStringParameters'])
+def branchdelete(event, context):
+    dto = Branch(event['queryStringParameters'])
     ret_val = dto.delete()
     response = {
         'statusCode': 200,

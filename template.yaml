@@ -81,3 +81,73 @@ Resources:
           Properties:
             Path: /genderlistall
             Method: get
+
+  branchcreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: branchcreate
+      CodeUri: src/functions
+      Handler: branchfunctions.branchcreate
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /branchcreate
+            Method: post
+
+  branchread:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: branchread
+      CodeUri: src/functions
+      Handler: branchfunctions.branchread
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /branchread
+            Method: get
+
+  branchupdate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: branchupdate
+      CodeUri: src/functions
+      Handler: branchfunctions.branchupdate
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /branchupdate
+            Method: put
+
+  branchdelete:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: branchdelete
+      CodeUri: src/functions
+      Handler: branchfunctions.branchdelete
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /branchdelete
+            Method: delete
+
+  branchlistall:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: branchlistall
+      CodeUri: src/functions
+      Handler: branchfunctions.branchlistall
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /branchlistall
+            Method: get
