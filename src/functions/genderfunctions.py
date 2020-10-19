@@ -5,27 +5,23 @@ from boto3.dynamodb.conditions import Key
 
 dynamodb = boto3.resource('dynamodb', endpoint_url='http://host.docker.internal:8000')
 table = dynamodb.Table('ReferenceData')
+item_type = 'GENDER'
 
 
 class Gender:
     def __init__(self, item):
         if item is not None:
             self.ItemUUID = item.get('ItemUUID')
-            self.ItemType = item.get('ItemType')
             self.Code = item.get('Code')
             self.Name = item.get('Name')
             self.EffectiveDate = item.get('EffectiveDate')
             self.ExpirationDate = item.get('ExpirationDate')
-            if self.ItemType is None:
-                self.ItemType = 'GENDER'
-            self.Key = {'ItemUUID': self.ItemUUID, 'ItemType': self.ItemType}
-        else:
-            self.ItemType = 'GENDER'
+            self.Key = {'ItemUUID': self.ItemUUID, 'ItemType': item_type}
 
     def create(self):
         if self.ItemUUID is None:
             self.ItemUUID = str(uuid.uuid4())
-        return table.put_item(Item={'ItemUUID': self.ItemUUID, 'ItemType': self.ItemType,
+        return table.put_item(Item={'ItemUUID': self.ItemUUID, 'ItemType': item_type,
                                     'Code': self.Code, 'Name': self.Name,
                                     'EffectiveDate': self.EffectiveDate, 'ExpirationDate': self.ExpirationDate})
 
@@ -54,8 +50,8 @@ class Gender:
 
     def getall(self):
         return table.query(
-            IndexName='ItemTypes',
-            KeyConditionExpression=Key('ItemType').eq(self.ItemType))
+            IndexName='item-type-index',
+            KeyConditionExpression=Key('ItemType').eq(item_type))
 
 
 def gendercreate(event, context):
