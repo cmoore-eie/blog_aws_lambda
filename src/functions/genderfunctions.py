@@ -55,7 +55,8 @@ class Gender:
 
 
 def gendercreate(event, context):
-    dto = Gender(event['queryStringParameters'])
+    item = json.loads(event.pop('body'))
+    dto = Gender(item)
     ret_val = dto.create()
     response = {
         'statusCode': 200,
@@ -65,7 +66,8 @@ def gendercreate(event, context):
 
 
 def genderupdate(event, context):
-    dto = Gender(event['queryStringParameters'])
+    item = json.loads(event.pop('body'))
+    dto = Gender(item)
     ret_val = dto.update()
     response = {
         'statusCode': 200,
@@ -75,7 +77,7 @@ def genderupdate(event, context):
 
 
 def genderread(event, context):
-    item = event['queryStringParameters']
+    item = json.loads(event.pop('body'))
     dto = Gender(item)
     ret_val = dto.read()
     response = {
@@ -96,7 +98,8 @@ def genderlistall(event, context):
 
 
 def genderdelete(event, context):
-    dto = Gender(event['queryStringParameters'])
+    item = json.loads(event.pop('body'))
+    dto = Gender(item)
     ret_val = dto.delete()
     response = {
         'statusCode': 200,

@@ -5,7 +5,6 @@ Description: >
 
   Sample SAM Template for AWS
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 3
@@ -150,4 +149,74 @@ Resources:
           Type: Api
           Properties:
             Path: /branchlistall
+            Method: get
+
+  dealercreate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: dealercreate
+      CodeUri: src/functions
+      Handler: dealerfunctions.dealercreate
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealercreate
+            Method: post
+
+  dealerread:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: dealerread
+      CodeUri: src/functions
+      Handler: dealerfunctions.dealerread
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerread
+            Method: get
+
+  dealerupdate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: dealerupdate
+      CodeUri: src/functions
+      Handler: dealerfunctions.dealerupdate
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerupdate
+            Method: put
+
+  dealerdelete:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: dealerdelete
+      CodeUri: src/functions
+      Handler: dealerfunctions.dealerdelete
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerdelete
+            Method: delete
+
+  dealerlistall:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: dealerlistall
+      CodeUri: src/functions
+      Handler: dealerfunctions.dealerlistall
+      Runtime: python3.8
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerlistall
             Method: get

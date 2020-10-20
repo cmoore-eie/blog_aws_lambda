@@ -126,13 +126,13 @@ def create_reference_table(dynamodb=None):
                          'EffectiveDate': '2020-01-01'})
     table.put_item(Item={'ItemUUID': dealeruuid,
                          'ItemType': 'DEALER_LOCATION#' + str(uuid.uuid4()),
-                         'LocationName': 'Dealer 1 Location',
+                         'Name': 'Dealer 1 Location',
                          'AddressLine1': '123 Main Street',
                          'AddressLine2': 'Orange',
                          'City': 'London'})
     table.put_item(Item={'ItemUUID': dealeruuid,
                          'ItemType': 'DEALER_LOCATION#' + str(uuid.uuid4()),
-                         'LocationName': 'Dealer 1 Location',
+                         'Name': 'Dealer 1 Location',
                          'AddressLine1': '1 South Street',
                          'AddressLine2': 'Apple',
                          'City': 'London'})

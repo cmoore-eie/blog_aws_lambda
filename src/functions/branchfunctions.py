@@ -1,6 +1,5 @@
 import json
 import uuid
-
 import boto3
 from boto3.dynamodb.conditions import Key
 
@@ -36,7 +35,7 @@ class Branch:
 
     def update(self):
         return table.update_item(Key=self.Key,
-                                 UpdateExpression="set #c=:c, #n=:n #ef=:ef #ex=:ex #bt=:bt",
+                                 UpdateExpression="set #c=:c, #n=:n, #ef=:ef, #ex=:ex, #bt=:bt",
                                  ExpressionAttributeValues={
                                      ':c': self.Code,
                                      ':n': self.Name,
@@ -63,7 +62,8 @@ class Branch:
 
 
 def branchcreate(event, context):
-    dto = Branch(event['queryStringParameters'])
+    item = json.loads(event.pop('body'))
+    dto = Branch(item)
     ret_val = dto.create()
     response = {
         'statusCode': 200,
@@ -73,7 +73,8 @@ def branchcreate(event, context):
 
 
 def branchupdate(event, context):
-    dto = Branch(event['queryStringParameters'])
+    item = json.loads(event.pop('body'))
+    dto = Branch(item)
     ret_val = dto.update()
     response = {
         'statusCode': 200,
@@ -83,7 +84,7 @@ def branchupdate(event, context):
 
 
 def branchread(event, context):
-    item = event['queryStringParameters']
+    item = json.loads(event.pop('body'))
     dto = Branch(item)
     ret_val = dto.read()
     response = {
@@ -104,7 +105,8 @@ def branchlistall(event, context):
 
 
 def branchdelete(event, context):
-    dto = Branch(event['queryStringParameters'])
+    item = json.loads(event.pop('body'))
+    dto = Branch(item)
     ret_val = dto.delete()
     response = {
         'statusCode': 200,
