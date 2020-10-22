@@ -9,84 +9,13 @@ Globals:
   Function:
     Timeout: 3
 
-
 Resources:
-  gendercreate:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: gendercreate
-      CodeUri: src/functions
-      Handler: genderfunctions.gendercreate
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /gendercreate
-            Method: post
-
-  genderread:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: genderread
-      CodeUri: src/functions
-      Handler: genderfunctions.genderread
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /genderread
-            Method: get
-
-  genderupdate:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: genderupdate
-      CodeUri: src/functions
-      Handler: genderfunctions.genderupdate
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /genderupdate
-            Method: put
-
-  genderdelete:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: genderdelete
-      CodeUri: src/functions
-      Handler: genderfunctions.genderdelete
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /genderdelete
-            Method: delete
-
-  genderlistall:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: genderlistall
-      CodeUri: src/functions
-      Handler: genderfunctions.genderlistall
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /genderlistall
-            Method: get
-
   branchcreate:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: branchcreate
-      CodeUri: src/functions
-      Handler: branchfunctions.branchcreate
+      FunctionName: lambda_handler
+      CodeUri: src/functions/branch_functions
+      Handler: branch_create.lambda_handler
       Runtime: python3.8
       Events:
         Api:
@@ -98,9 +27,9 @@ Resources:
   branchread:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: branchread
-      CodeUri: src/functions
-      Handler: branchfunctions.branchread
+      FunctionName: lambda_handler
+      CodeUri: src/functions/branch_functions
+      Handler: branch_read.lambda_handler
       Runtime: python3.8
       Events:
         Api:
@@ -112,9 +41,9 @@ Resources:
   branchupdate:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: branchupdate
-      CodeUri: src/functions
-      Handler: branchfunctions.branchupdate
+      FunctionName: lambda_handler
+      CodeUri: src/functions/branch_functions
+      Handler: branch_update.lambda_handler
       Runtime: python3.8
       Events:
         Api:
@@ -126,9 +55,9 @@ Resources:
   branchdelete:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: branchdelete
-      CodeUri: src/functions
-      Handler: branchfunctions.branchdelete
+      FunctionName: lambda_handler
+      CodeUri: src/functions/branch_functions
+      Handler: branch_delete.lambda_handler
       Runtime: python3.8
       Events:
         Api:
@@ -140,9 +69,9 @@ Resources:
   branchlistall:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: branchlistall
-      CodeUri: src/functions
-      Handler: branchfunctions.branchlistall
+      FunctionName: lambda_handler
+      CodeUri: src/functions/branch_functions
+      Handler: branch_list.lambda_handler
       Runtime: python3.8
       Events:
         Api:
@@ -154,9 +83,9 @@ Resources:
   dealercreate:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: dealercreate
-      CodeUri: src/functions
-      Handler: dealerfunctions.dealercreate
+      FunctionName: lambda_handler
+      CodeUri: src/functions/dealer_functions
+      Handler: dealer_create.lambda_handler
       Runtime: python3.8
       Events:
         Api:
@@ -165,58 +94,128 @@ Resources:
             Path: /dealercreate
             Method: post
 
-  dealerread:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: dealerread
-      CodeUri: src/functions
-      Handler: dealerfunctions.dealerread
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /dealerread
-            Method: get
+    dealerread:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/dealer_functions
+        Handler: dealer_read.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /dealerread
+              Method: get
 
-  dealerupdate:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: dealerupdate
-      CodeUri: src/functions
-      Handler: dealerfunctions.dealerupdate
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /dealerupdate
-            Method: put
+    dealerupdate:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/dealer_functions
+        Handler: dealer_update.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /dealerupdate
+              Method: put
 
-  dealerdelete:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: dealerdelete
-      CodeUri: src/functions
-      Handler: dealerfunctions.dealerdelete
-      Runtime: python3.8
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /dealerdelete
-            Method: delete
+    dealerdelete:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/dealer_functions
+        Handler: dealer_delete.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /dealerdelete
+              Method: delete
 
-  dealerlistall:
+    dealerlistall:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/dealer_functions
+        Handler: dealer_list.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /dealerlistall
+              Method: get
+
+  gendercreate:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: dealerlistall
-      CodeUri: src/functions
-      Handler: dealerfunctions.dealerlistall
+      FunctionName: lambda_handler
+      CodeUri: src/functions/gender_functions
+      Handler: gender_create.lambda_handler
       Runtime: python3.8
       Events:
         Api:
           Type: Api
           Properties:
-            Path: /dealerlistall
-            Method: get
+            Path: /gendercreate
+            Method: post
+
+    genderread:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/gender_functions
+        Handler: gender_read.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /genderread
+              Method: get
+
+    genderupdate:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/gender_functions
+        Handler: gender_update.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /genderupdate
+              Method: put
+
+    genderdelete:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/gender_functions
+        Handler: gender_delete.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /genderdelete
+              Method: delete
+
+    genderlistall:
+      Type: AWS::Serverless::Function
+      Properties:
+        FunctionName: lambda_handler
+        CodeUri: src/functions/gender_functions
+        Handler: gender_list.lambda_handler
+        Runtime: python3.8
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /genderlistall
+              Method: get

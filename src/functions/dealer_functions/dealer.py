@@ -1,4 +1,3 @@
-import json
 import uuid
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -18,8 +17,8 @@ class Dealer:
             self.ItemUUID = item.get('ItemUUID')
             self.Code = item.get('Code')
             self.Name = item.get('Name')
-            self.EffectiveDate = item.get('EffectiveDate')
-            self.ExpirationDate = item.get('ExpirationDate')
+            self.EffectiveDate = item.get('EffectiveDate', None)
+            self.ExpirationDate = item.get('ExpirationDate', None)
             self.Key = {'ItemUUID': self.ItemUUID, 'ItemType': item_type}
 
     def create(self):
@@ -86,57 +85,3 @@ class Dealer:
         return table.query(
             IndexName='item-type-index',
             KeyConditionExpression=Key('ItemType').eq(item_type))
-
-
-def dealercreate(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Dealer(item)
-    ret_val = dto.create()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def dealerupdate(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Dealer(item)
-    ret_val = dto.update()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def dealerread(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Dealer(item)
-    ret_val = dto.read()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def dealerlistall(event, context):
-    dto = Dealer(None)
-    ret_val = dto.getall()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def dealerdelete(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Dealer(item)
-    ret_val = dto.delete()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response

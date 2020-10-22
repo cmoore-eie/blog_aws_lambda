@@ -1,4 +1,3 @@
-import json
 import uuid
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -14,8 +13,10 @@ class Gender:
             self.ItemUUID = item.get('ItemUUID')
             self.Code = item.get('Code')
             self.Name = item.get('Name')
-            self.EffectiveDate = item.get('EffectiveDate')
-            self.ExpirationDate = item.get('ExpirationDate')
+            self.EffectiveDate = item.get('EffectiveDate', None)
+            self.ExpirationDate = item.get('ExpirationDate', None)
+            print(self.EffectiveDate)
+            print(self.ExpirationDate)
             self.Key = {'ItemUUID': self.ItemUUID, 'ItemType': item_type}
 
     def create(self):
@@ -30,7 +31,7 @@ class Gender:
 
     def update(self):
         return table.update_item(Key=self.Key,
-                                 UpdateExpression="set #c=:c, #n=:n #ef=:ef #ex=:ex",
+                                 UpdateExpression="set #c=:c, #n=:n, #ef=:ef, #ex=:ex",
                                  ExpressionAttributeValues={
                                      ':c': self.Code,
                                      ':n': self.Name,
@@ -53,56 +54,3 @@ class Gender:
             IndexName='item-type-index',
             KeyConditionExpression=Key('ItemType').eq(item_type))
 
-
-def gendercreate(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Gender(item)
-    ret_val = dto.create()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def genderupdate(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Gender(item)
-    ret_val = dto.update()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def genderread(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Gender(item)
-    ret_val = dto.read()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def genderlistall(event, context):
-    dto = Gender(None)
-    ret_val = dto.getall()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def genderdelete(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Gender(item)
-    ret_val = dto.delete()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response

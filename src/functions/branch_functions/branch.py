@@ -1,4 +1,3 @@
-import json
 import uuid
 import boto3
 from boto3.dynamodb.conditions import Key
@@ -17,8 +16,8 @@ class Branch:
             self.Code = item.get('Code')
             self.Name = item.get('Name')
             self.BranchType = item.get('BranchType')
-            self.EffectiveDate = item.get('EffectiveDate')
-            self.ExpirationDate = item.get('ExpirationDate')
+            self.EffectiveDate = item.get('EffectiveDate', None)
+            self.ExpirationDate = item.get('ExpirationDate', None)
             self.Key = {'ItemUUID': self.ItemUUID, 'ItemType': item_type}
             if self.BranchType not in branch_type:
                 self.BranchType = 'Local'
@@ -60,56 +59,3 @@ class Branch:
             IndexName='item-type-index',
             KeyConditionExpression=Key('ItemType').eq(item_type))
 
-
-def branchcreate(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Branch(item)
-    ret_val = dto.create()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def branchupdate(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Branch(item)
-    ret_val = dto.update()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def branchread(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Branch(item)
-    ret_val = dto.read()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def branchlistall(event, context):
-    dto = Branch(None)
-    ret_val = dto.getall()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
-
-
-def branchdelete(event, context):
-    item = json.loads(event.pop('body'))
-    dto = Branch(item)
-    ret_val = dto.delete()
-    response = {
-        'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
-    }
-    return response
