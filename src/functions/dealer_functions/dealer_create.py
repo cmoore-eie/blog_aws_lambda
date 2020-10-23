@@ -3,7 +3,10 @@ from dealer import Dealer
 
 
 def lambda_handler(event, context):
-    item = json.loads(event.pop('body'))
+    if 'body' in event:
+        item = json.loads(event.pop('body', event))
+    else:
+        item = event
     dto = Dealer(item)
     ret_val = dto.create()
     response = {

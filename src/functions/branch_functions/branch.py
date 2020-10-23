@@ -1,9 +1,12 @@
+import os
 import uuid
 import boto3
 from boto3.dynamodb.conditions import Key
 
-dynamodb = boto3.resource('dynamodb', endpoint_url='http://host.docker.internal:8000')
-table = dynamodb.Table('ReferenceData')
+dynamodb = boto3.resource('dynamodb')
+if 'databaseUrl' in os.environ:
+    dynamodb = boto3.resource('dynamodb', endpoint_url=os.environ.get('databaseUrl'))
+table = dynamodb.Table(os.environ.get('databaseName'))
 item_type = 'BRANCH'
 branch_type = ['Local', 'Main']
 

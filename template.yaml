@@ -15,6 +15,10 @@ Resources:
       CodeUri: src/functions/branch_functions
       Handler: branch_create.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
           Type: Api
@@ -29,6 +33,10 @@ Resources:
       CodeUri: src/functions/branch_functions
       Handler: branch_read.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
           Type: Api
@@ -43,6 +51,10 @@ Resources:
       CodeUri: src/functions/branch_functions
       Handler: branch_update.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
           Type: Api
@@ -57,6 +69,10 @@ Resources:
       CodeUri: src/functions/branch_functions
       Handler: branch_delete.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
           Type: Api
@@ -71,6 +87,10 @@ Resources:
       CodeUri: src/functions/branch_functions
       Handler: branch_list.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
           Type: Api
@@ -85,6 +105,10 @@ Resources:
       CodeUri: src/functions/dealer_functions
       Handler: dealer_create.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
           Type: Api
@@ -92,61 +116,77 @@ Resources:
             Path: /dealercreate
             Method: post
 
-    dealerread:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/dealer_functions
-        Handler: dealer_read.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /dealerread
-              Method: get
+  dealerread:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/dealer_functions
+      Handler: dealer_read.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerread
+            Method: get
 
-    dealerupdate:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/dealer_functions
-        Handler: dealer_update.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /dealerupdate
-              Method: put
+  dealerupdate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/dealer_functions
+      Handler: dealer_update.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerupdate
+            Method: put
 
-    dealerdelete:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/dealer_functions
-        Handler: dealer_delete.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /dealerdelete
-              Method: delete
+  dealerdelete:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/dealer_functions
+      Handler: dealer_delete.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerdelete
+            Method: delete
 
-    dealerlistall:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/dealer_functions
-        Handler: dealer_list.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /dealerlistall
-              Method: get
+  dealerlistall:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/dealer_functions
+      Handler: dealer_list.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /dealerlistall
+            Method: get
 
   gendercreate:
     Type: AWS::Serverless::Function
@@ -155,6 +195,10 @@ Resources:
       CodeUri: src/functions/gender_functions
       Handler: gender_create.lambda_handler
       Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
           Type: Api
@@ -162,58 +206,74 @@ Resources:
             Path: /gendercreate
             Method: post
 
-    genderread:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/gender_functions
-        Handler: gender_read.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /genderread
-              Method: get
+  genderread:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/gender_functions
+      Handler: gender_read.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderread
+            Method: get
 
-    genderupdate:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/gender_functions
-        Handler: gender_update.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /genderupdate
-              Method: put
+  genderupdate:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/gender_functions
+      Handler: gender_update.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderupdate
+            Method: put
 
-    genderdelete:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/gender_functions
-        Handler: gender_delete.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /genderdelete
-              Method: delete
+  genderdelete:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/gender_functions
+      Handler: gender_delete.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderdelete
+            Method: delete
 
-    genderlistall:
-      Type: AWS::Serverless::Function
-      Properties:
-        FunctionName: lambda_handler
-        CodeUri: src/functions/gender_functions
-        Handler: gender_list.lambda_handler
-        Runtime: python3.8
-        Events:
-          Api:
-            Type: Api
-            Properties:
-              Path: /genderlistall
-              Method: get
+  genderlistall:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: lambda_handler
+      CodeUri: src/functions/gender_functions
+      Handler: gender_list.lambda_handler
+      Runtime: python3.8
+      Environment:
+        Variables:
+          databaseName: ReferenceData
+          databaseUrl: http://host.docker.internal:8000
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /genderlistall
+            Method: get

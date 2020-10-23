@@ -3,7 +3,10 @@ from gender import Gender
 
 
 def lambda_handler(event, context):
-    item = json.loads(event.pop('body'))
+    if 'body' in event:
+        item = json.loads(event.pop('body', event))
+    else:
+        item = event
     dto = Gender(item)
     ret_val = dto.update()
     response = {
