@@ -35,7 +35,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -53,7 +52,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -71,7 +69,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -89,7 +86,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -107,7 +103,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -125,7 +120,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -143,7 +137,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -161,7 +154,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -179,7 +171,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -197,7 +188,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -215,7 +205,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -233,7 +222,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -251,7 +239,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
@@ -269,7 +256,6 @@ Resources:
       Runtime: python3.8
       Environment:
         Variables:
-          databaseName: ReferenceData
           databaseUrl: http://host.docker.internal:8000
       Events:
         Api:
