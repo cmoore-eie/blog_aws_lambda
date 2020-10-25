@@ -6,7 +6,7 @@ from boto3.dynamodb.conditions import Key
 dynamodb = boto3.resource('dynamodb')
 if 'databaseUrl' in os.environ:
     dynamodb = boto3.resource('dynamodb', endpoint_url=os.environ.get('databaseUrl'))
-table = dynamodb.Table("ReferenceData")
+table = dynamodb.Table('ReferenceData')
 item_type = 'GENDER'
 
 
