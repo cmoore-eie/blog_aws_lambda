@@ -12,9 +12,10 @@ def lambda_handler(event, context):
     else:
         item = event
     dto = Branch(item)
-    ret_val = dto.read()
+    return_item = dto.read()
+
     response = {
         'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
+        "body": json.dumps(return_item),
     }
     return response

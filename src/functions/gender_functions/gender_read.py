@@ -3,14 +3,17 @@ from gender import Gender
 
 
 def lambda_handler(event, context):
-    if 'body' in event:
-        item = json.loads(event.pop('body', event))
+    if 'queryStringParameters' in event:
+        item = event.pop('queryStringParameters')
+        if isinstance(item, str):
+            item = literal_eval(item)
     else:
         item = event
     dto = Gender(item)
-    ret_val = dto.read()
+    return_item = dto.read()
+
     response = {
         'statusCode': 200,
-        'body': json.dumps({'result': ret_val})
+        "body": json.dumps(return_item),
     }
     return response
